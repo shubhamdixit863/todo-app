@@ -10,19 +10,19 @@ function App() {
   const [count, setCount] = useState(0)
   const [task,setTask]=useState("");
 
-    const [list,setList]=useState([
-   
-
-  ])
+    const [list,setList]=useState([])
 
 
   const btnClick=()=>{
     console.log("Button clicked")
-
-    setList([{
+    // problematic code 
+    let newTask={
       id:1,
       taskName:task
-    }])
+    }
+    let allTasks=[...list,newTask]
+
+    setList(allTasks)
 
 
   }
