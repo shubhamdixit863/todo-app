@@ -8,27 +8,31 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [task,setTask]=useState("");
 
     const [list,setList]=useState([
-    {
-     "id":"1",
-     "taskName":"Sleep"
-    },{
-     "id":"2",
-     "taskName":"Sleep"
-    },
-    {
-     "id":"3",
-     "taskName":"Sleep"
-    }
+   
 
   ])
 
 
   const btnClick=()=>{
     console.log("Button clicked")
+
+    setList([{
+      id:1,
+      taskName:task
+    }])
+
+
   }
 
+
+     const inputHandler=(event)=>{
+    //console.log("Printing from the app compnent",event.target.value)
+    setTask(event.target.value);
+
+  }
 
 
   return (
@@ -37,7 +41,7 @@ function App() {
 
        <div className="row justify-content-center">
     <div className="col-4">
-       <AddComponent/>
+       <AddComponent inputHandler={inputHandler}/>
     </div>
     <div className="col-4">
          <button onClick={btnClick} type="button" className="btn btn-warning" style={{padding:"12px"}}> Add ToDo</button>
