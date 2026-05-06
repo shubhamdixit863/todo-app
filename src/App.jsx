@@ -76,7 +76,7 @@ console.log(makeid(5));
       .then(json => {
        // console.log(json)
        setApiData(json);
-      })
+      }).catch(err=>console.log(err))
 
   },[])
   
