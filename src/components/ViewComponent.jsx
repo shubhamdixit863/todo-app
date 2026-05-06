@@ -26,7 +26,7 @@ function ViewComponent(props){
       <th scope="row">{ele.id}</th>
       <td>
         {
-          showInput ? <input  className="form-control form-control-lg" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example"/>:ele.taskName
+          showInput ? <input  className="form-control form-control-lg" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example"/>:ele.title
 
         }
         

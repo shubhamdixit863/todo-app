@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -11,6 +11,7 @@ function App() {
   const [task,setTask]=useState("");
 
     const [list,setList]=useState([])
+    const [apiData,setApiData]=useState([]);
 
 // Source - https://stackoverflow.com/a/1349426
 // Posted by csharptest.net, modified by community. See post 'Timeline' for change history
@@ -26,13 +27,17 @@ function makeid(length) {
     return result;
 }
 
+
+
+//GetApiData()
+
 console.log(makeid(5));
   const btnClick=()=>{
     console.log("Button clicked")
     // problematic code 
     let newTask={
       id:makeid(10),
-      taskName:task
+      title:task
     }
     let allTasks=[...list,newTask]
 
@@ -64,6 +69,16 @@ console.log(makeid(5));
     setTask(event.target.value);
 
   }
+
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(json => {
+       // console.log(json)
+       setApiData(json);
+      })
+
+  },[])
   
 
 
@@ -83,6 +98,15 @@ console.log(makeid(5));
 
   <div className='row justify-content-center' style={{marginTop:"100px"}}>
     <ViewComponent list={list} deleteHAndler={deleteHAndler}/>
+
+  </div>
+
+
+
+    <div className='row justify-content-center' style={{marginTop:"100px"}}>
+       <h1>-----Api Data--------------</h1>
+
+       <ViewComponent list={apiData} deleteHAndler={deleteHAndler}/>
 
   </div>
         
