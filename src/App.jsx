@@ -12,12 +12,26 @@ function App() {
 
     const [list,setList]=useState([])
 
+// Source - https://stackoverflow.com/a/1349426
+// Posted by csharptest.net, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-05-06, License - CC BY-SA 4.0
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+console.log(makeid(5));
   const btnClick=()=>{
     console.log("Button clicked")
     // problematic code 
     let newTask={
-      id:1,
+      id:makeid(10),
       taskName:task
     }
     let allTasks=[...list,newTask]
@@ -26,6 +40,23 @@ function App() {
 
 
   }
+  const deleteHAndler=(id)=>{
+    // const newArray=[];
+    // for (let i=0;i<list.length;i++){
+    //   if (list[i].id != id ){
+    //     // We will remove that element
+    //     newArray.push(list[i]);
+    //   }
+
+    // }
+    const newArray=list.filter((ele)=>{
+      return  ele.id !=id
+    })
+
+    setList(newArray);
+
+   // console.log("delete handler called",id)
+  }
 
 
      const inputHandler=(event)=>{
@@ -33,6 +64,7 @@ function App() {
     setTask(event.target.value);
 
   }
+  
 
 
   return (
@@ -50,7 +82,7 @@ function App() {
   </div>
 
   <div className='row justify-content-center' style={{marginTop:"100px"}}>
-    <ViewComponent list={list}/>
+    <ViewComponent list={list} deleteHAndler={deleteHAndler}/>
 
   </div>
         

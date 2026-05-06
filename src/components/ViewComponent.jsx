@@ -2,7 +2,12 @@ import { useState } from "react"
 
 function ViewComponent(props){
   //console.log(props);
+  const [showInput,setShowInput]=useState(false);
 
+  const editHandler=()=>{
+    setShowInput(true);
+
+  }
 
     return(
         <table className="table">
@@ -19,14 +24,26 @@ function ViewComponent(props){
     props.list.map(ele=>(
         <tr>
       <th scope="row">{ele.id}</th>
-      <td>{ele.taskName}</td>
-      <td>{"Edit"}</td>
-      <td>{"Delete"}</td>
+      <td>
+        {
+          showInput ? <input  className="form-control form-control-lg" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example"/>:ele.taskName
+
+        }
+        
+
+        </td>
+      <td><button onClick={
+
+     ()=>props.deleteHAndler(ele.id)
+     
+
+      } type="button" class="btn btn-danger">Delete</button></td>
+      <td><button onClick={editHandler} type="button" class="btn btn-warning">Edit</button></td>
     </tr>
     )
 
     )
-
+// Rakesh --firstperosn to be showing
   }
   </tbody>
 </table>
