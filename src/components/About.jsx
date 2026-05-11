@@ -1,4 +1,6 @@
 import { useState ,useReducer} from "react"
+import { Button, Flex } from 'antd';
+
 
 function About(params) {
 
@@ -29,10 +31,9 @@ function About(params) {
 
 
     return <>
+     <Button type="primary" onClick={changeText}> Change Text</Button>
 
-    <button onClick={changeText}>
-      Change Text
-    </button>
+   
     
       <h1>{state}</h1>
     </>
