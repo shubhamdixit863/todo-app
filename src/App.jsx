@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import AddComponent from './components/AddComponent'
 import ViewComponent from './components/ViewComponent'
+import DataClass from './components/DataClass'
 import './App.css'
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
 
     const [list,setList]=useState([])
     const [apiData,setApiData]=useState([]);
+    const [showClass,setShowClass]=useState(false);
+
+    const [dataClassName,setDataClassName]=useState("John")
 
 // Source - https://stackoverflow.com/a/1349426
 // Posted by csharptest.net, modified by community. See post 'Timeline' for change history
@@ -31,9 +35,9 @@ function makeid(length) {
 
 //GetApiData()
 
-console.log(makeid(5));
+//console.log(makeid(5));
   const btnClick=()=>{
-    console.log("Button clicked")
+    //console.log("Button clicked")
     // problematic code 
     let newTask={
       id:makeid(10),
@@ -43,6 +47,11 @@ console.log(makeid(5));
 
     setList(allTasks)
 
+
+  }
+
+  const updateName=()=>{
+     setDataClassName(makeid(9));
 
   }
   const deleteHAndler=(id)=>{
@@ -80,7 +89,10 @@ console.log(makeid(5));
 
   },[])
   
+const showClassComponent=()=>{
 
+  setShowClass(!showClass);
+}
 
   return (
     <>
@@ -97,7 +109,12 @@ console.log(makeid(5));
   </div>
 
   <div className='row justify-content-center' style={{marginTop:"100px"}}>
-    <ViewComponent list={list} deleteHAndler={deleteHAndler}/>
+    {
+      /**
+       * <ViewComponent list={list} deleteHAndler={deleteHAndler}/>
+       */
+    }
+    
 
   </div>
 
@@ -105,10 +122,30 @@ console.log(makeid(5));
 
     <div className='row justify-content-center' style={{marginTop:"100px"}}>
        <h1>-----Api Data--------------</h1>
+       {
+        /**
+         *        <ViewComponent list={apiData} deleteHAndler={deleteHAndler}/>
 
-       <ViewComponent list={apiData} deleteHAndler={deleteHAndler}/>
+         */
+       }
+
 
   </div>
+
+  <h1>Class Component</h1>
+  <button onClick={showClassComponent}>
+    Show Class Component
+  </button>
+
+  <button onClick={updateName}>
+    Update The Name
+  </button>
+
+  {
+    showClass ? <DataClass  name={dataClassName}/>:""
+  }
+
+ 
         
 
     </div>
